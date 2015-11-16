@@ -1,17 +1,22 @@
 package com.springapp.mvc.client;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.springapp.mvc.client.DeviceManagement.*;
+import com.springapp.mvc.server.*;
+import com.springapp.mvc.server.HttpOperation;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @Controller
 @RequestMapping("/client")
 public class ClientController {
     List<Client> clientList = new ArrayList<Client>();
+    private boolean notifyBoolean = false;
 
     @RequestMapping(value = "/management/create/{id}", method = RequestMethod.GET)
     public void createClient(@PathVariable String id) {
@@ -120,6 +125,51 @@ public class ClientController {
                 break;
             }
         }
+    }
+    @RequestMapping(value = "/observe/{id}/{instanceid}/{resourceid}", method = RequestMethod.GET)
+    String observe(@PathVariable String id,
+                        @PathVariable String instanceid,
+                        @PathVariable String resourceid,
+                        ModelMap model) {
+        notifyBoolean = true;
+        while(notifyBoolean) {
+            NotifyInfo notifyInfo = buildNotifyInfo(id, instanceid, resourceid);
+            Calendar cal = Calendar.getInstance();
+            if(cal.getTimeInMillis() / 1000 % 5 == 0) {
+                String url = "http://localhost:8080/server/notify";
+                try {
+                    String json = new ObjectMapper().writeValueAsString(notifyInfo);
+                    com.springapp.mvc.server.HttpOperation.post(url, json);
+                    HttpOperation.get("http://localhost:8080/client/notify/" + id + "/" + instanceid + "/" + resourceid);
+                } catch (JsonProcessingException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        model.put("message", "start observe");
+        return "hello";
+    }
+    private NotifyInfo buildNotifyInfo(String id, String instanceid, String resourceid) {
+        ClientObjectDAO clientObjectDAO = new ClientObjectDAO();
+        ClientObject clientObject = clientObjectDAO.get(id);
+        ClientInstance clientInstance = clientObject.getInstances().get(Integer.parseInt(instanceid));
+        ClientResource clientResource = clientInstance.getResources().get(Integer.parseInt((resourceid)));
+        NotifyInfo notifyInfo = new NotifyInfo();
+        notifyInfo.setId((id));
+
+        Calendar cal = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+        notifyInfo.setTimestamp(sdf.format(cal.getTime()));
+        notifyInfo.setTemp(clientResource.getResource());
+        return notifyInfo;
+    }
+    @RequestMapping(value = "/cancelobserve/{id}", method = RequestMethod.GET)
+    public void cancelObserve(@PathVariable String id) {
+        notifyBoolean = false;
+    }
+
+    private boolean checkAttribute(String id, String instanceid, String resourceid) {
+        return true;
     }
 
 	@RequestMapping(value = "/hello", method = RequestMethod.GET)

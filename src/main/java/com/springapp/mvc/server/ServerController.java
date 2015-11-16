@@ -1,5 +1,7 @@
 package com.springapp.mvc.server;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.springapp.mvc.client.bootstrap.Bootstrap;
 import com.springapp.mvc.server.bootstrap.ServerBootstrapDAO;
 import com.springapp.mvc.server.register.RegisterInfo;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping("/server")
 public class ServerController {
+    private String temperature = "NAN";
     @RequestMapping(value = "/hello", method = RequestMethod.GET)
     public String printWelcome(ModelMap model) {
         model.addAttribute("message", "Hello Server!");
@@ -40,10 +43,50 @@ public class ServerController {
     @RequestMapping(value = "/register/{id}", method = RequestMethod.GET)
     public String getRegisterInfo(@PathVariable String id, ModelMap model) {
         ServerRegisterInfoDAO serverRegisterInfoDAO = new ServerRegisterInfoDAO();
-        String registerInfo = serverRegisterInfoDAO.getRegisterInfo(id);
-
-        model.addAttribute("message", registerInfo == null ? "null" : registerInfo);
+        RegisterInfo registerInfo = serverRegisterInfoDAO.getRegisterInfo(id);
+        model.addAttribute("message", registerInfo == null ? "null" : registerInfo.getId());
         return "hello";
     }
 
+    @RequestMapping(value = "/observe/{id}/{instanceid}/{resourceid}", method = RequestMethod.GET)
+    public void observe(@PathVariable String id,
+                          @PathVariable String instanceid,
+                          @PathVariable String resourceid) {
+        ServerRegisterInfoDAO serverRegisterInfoDAO = new ServerRegisterInfoDAO();
+        RegisterInfo registerInfo = serverRegisterInfoDAO.getRegisterInfo(id);
+        try {
+            String url = registerInfo.getClientURI();
+            HttpOperation.get(url + "observe/" + id + "/" + instanceid + "/" + resourceid);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @RequestMapping(value = "/cancelobserve/{id}", method = RequestMethod.GET)
+    public void cancelObserve(@PathVariable String id) {
+        ServerRegisterInfoDAO serverRegisterInfoDAO = new ServerRegisterInfoDAO();
+        RegisterInfo registerInfo = serverRegisterInfoDAO.getRegisterInfo(id);
+        try {
+            String url = registerInfo.getClientURI();
+            HttpOperation.get(url + "cancelobserve/" + id);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @RequestMapping(value = "/notify", method = RequestMethod.POST)
+    public void notifyListener(@RequestBody NotifyInfo notifyInfo) {
+        try {
+            temperature = new ObjectMapper().writeValueAsString(notifyInfo);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //for testing only
+    @RequestMapping(value = "/gettemperature", method = RequestMethod.GET)
+    public String getTemp(ModelMap model) {
+        model.put("message", temperature);
+        return "hello";
+    }
 }

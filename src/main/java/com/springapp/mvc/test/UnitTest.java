@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class UnitTest {
     public static void main(String[] args) {
-        //boostrapTest();
+        boostrapTest();
 
         addDummyData();
 
@@ -62,7 +62,8 @@ public class UnitTest {
 
         ClientObjectDAO clientObjectDAO = new ClientObjectDAO();
         clientObjectDAO.save(clientObject);
-        
+
+
     }
     private static void boostrapTest() {
         Client client = new Client("1");

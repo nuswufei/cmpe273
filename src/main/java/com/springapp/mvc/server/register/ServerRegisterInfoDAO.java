@@ -10,6 +10,8 @@ import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import org.bson.Document;
 
+import java.io.IOException;
+
 /**
  * Created by WU on 15/11/2015.
  */
@@ -39,9 +41,14 @@ public class ServerRegisterInfoDAO {
         document.append("id", id);
         mongoCollection.deleteMany(document);
     }
-    public String getRegisterInfo(String id) {
+    public RegisterInfo getRegisterInfo(String id) {
         Document document = (Document) mongoCollection.find(Filters.eq("id", id)).first();
-        if(document == null) return null;
-        return document.toJson();
+        try {
+            return jacksonObjectMapper.readValue(document.toJson(), RegisterInfo.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
+
 }
