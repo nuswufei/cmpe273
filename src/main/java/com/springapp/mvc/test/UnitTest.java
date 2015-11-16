@@ -17,22 +17,6 @@ public class UnitTest {
 
     }
     private static void addDummyData() {
-        List<String> l0 = new ArrayList<String>();
-        List<String> l1 = new ArrayList<String>();
-        List<String> l2 = new ArrayList<String>();
-        List<String> l3 = new ArrayList<String>();
-        List<String> l4 = new ArrayList<String>();
-        List<String> l5 = new ArrayList<String>();
-        List<String> l6 = new ArrayList<String>();
-        List<String> l7 = new ArrayList<String>();
-        l0.add("Bootstrap_Server_URL: http://localhost:8080/server/bootstrap/");
-        l1.add("Registration_Server_URL: http://localhost:8080/server/register");
-        l2.add("Resource_Server_URL: http://localhost:8080/server/");
-        l3.add("VIN: 1234567");
-        l4.add("manufacture: HONDA");
-        l5.add("modelname: civic");
-        l6.add("modeloption: ex");
-        l7.add("temperature: 20");
         ClientResource c0 = new ClientResource();
         c0.setResource("Bootstrap_Server_URL: http://localhost:8080/server/bootstrap/");
         ClientResource c1 = new ClientResource();
@@ -62,26 +46,23 @@ public class UnitTest {
         lst.add(c7);
         clientInstance.setResources(lst);
 
-        ClientAttribute clientAttribute = new ClientAttribute();
+        ClientInstanceAttribute clientInstanceAttribute = new ClientInstanceAttribute();
         for(int i = 0; i < 7; ++i) {
-            clientAttribute.getResources().add(new ClientResource());
+            clientInstanceAttribute.getAttributes().add(new ClientAttribute());
         }
-        ClientResource clientResource = new ClientResource();
-        clientResource.getResources().add("pmin = 10");
-        clientResource.getResources().add("pmax = 60");
-        clientAttribute.getResources().add(clientResource);
-        clientAttribute.setId("1");
+        ClientAttribute clientAttribute = new ClientAttribute();
+        clientAttribute.setAttribute("pmin = 10, pmax = 60");
+        clientInstanceAttribute.getAttributes().add(clientAttribute);
+        clientInstanceAttribute.setId("0");
         ClientObject clientObject = new ClientObject();
         clientObject.getInstances().add(clientInstance);
-        clientObject.getAttributes().add(clientAttribute);
+        clientObject.getAttributes().add(clientInstanceAttribute);
 
-        clientObject.setId("0");
+        clientObject.setId("1");
 
         ClientObjectDAO clientObjectDAO = new ClientObjectDAO();
         clientObjectDAO.save(clientObject);
-
-
-
+        
     }
     private static void boostrapTest() {
         Client client = new Client("1");

@@ -36,22 +36,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UnitTest.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="UnitTest.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/test/UnitTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="727" max-vertical-offset="1616">
-              <caret line="63" column="0" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.913486" vertical-offset="665" max-vertical-offset="1312">
+              <caret line="64" column="8" selection-start-line="64" selection-start-column="8" selection-end-line="64" selection-end-column="8" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#425#433#0" expanded="true" />
-                <element signature="e#476#484#0" expanded="true" />
-                <element signature="e#527#535#0" expanded="true" />
-                <element signature="e#578#586#0" expanded="true" />
-                <element signature="e#629#637#0" expanded="true" />
-                <element signature="e#680#688#0" expanded="true" />
-                <element signature="e#731#739#0" expanded="true" />
-                <element signature="e#782#790#0" expanded="true" />
-                <element signature="e#2221#2237#0" expanded="true" />
+                <element signature="e#1404#1420#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -60,9 +52,11 @@
       <file leaf-file-name="Client.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/client/Client.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="128" max-vertical-offset="1600">
-              <caret line="20" column="99" selection-start-line="20" selection-start-column="62" selection-end-line="20" selection-end-column="99" />
-              <folding />
+            <state vertical-scroll-proportion="0.0" vertical-offset="112" max-vertical-offset="1680">
+              <caret line="26" column="27" selection-start-line="26" selection-start-column="27" selection-end-line="26" selection-end-column="27" />
+              <folding>
+                <element signature="e#1210#1211#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -70,8 +64,8 @@
       <file leaf-file-name="ClientResource.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/client/DeviceManagement/ClientResource.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="352">
-              <caret line="12" column="5" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="400">
+              <caret line="18" column="1" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
               <folding>
                 <element signature="e#154#155#0" expanded="true" />
                 <element signature="e#185#186#0" expanded="true" />
@@ -85,8 +79,8 @@
       <file leaf-file-name="ClientController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/client/ClientController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="887" max-vertical-offset="1440">
-              <caret line="82" column="35" selection-start-line="82" selection-start-column="23" selection-end-line="82" selection-end-column="35" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1575" max-vertical-offset="2064">
+              <caret line="123" column="0" selection-start-line="123" selection-start-column="0" selection-end-line="123" selection-end-column="0" />
               <folding>
                 <element signature="e#394#402#0" expanded="true" />
               </folding>
@@ -104,12 +98,33 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ClientAttribute.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ClientInstanceAttribute.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/client/DeviceManagement/ClientInstanceAttribute.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="55" max-vertical-offset="448">
+              <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+              <folding>
+                <element signature="e#350#351#0" expanded="true" />
+                <element signature="e#383#384#0" expanded="true" />
+                <element signature="e#450#451#0" expanded="true" />
+                <element signature="e#494#495#0" expanded="true" />
+                <element signature="e#577#594#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ClientAttribute.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/client/DeviceManagement/ClientAttribute.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7557252" vertical-offset="7" max-vertical-offset="400">
-              <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-              <folding />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="352">
+              <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+              <folding>
+                <element signature="e#156#157#0" expanded="true" />
+                <element signature="e#188#189#0" expanded="true" />
+                <element signature="e#238#239#0" expanded="true" />
+                <element signature="e#280#281#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -121,8 +136,8 @@
               <caret line="33" column="21" selection-start-line="33" selection-start-column="21" selection-end-line="33" selection-end-column="21" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#753#769#0" expanded="true" />
-                <element signature="e#832#849#0" expanded="true" />
+                <element signature="e#769#785#0" expanded="true" />
+                <element signature="e#856#881#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -165,12 +180,13 @@
         <option value="$PROJECT_DIR$/src/main/java/com/springapp/mvc/server/ServerController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/springapp/mvc/client/DeviceManagement/Resources.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/springapp/mvc/client/DeviceManagement/ClientObject.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/springapp/mvc/client/DeviceManagement/ClientAttribute.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/springapp/mvc/client/Client.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/springapp/mvc/client/DeviceManagement/ClientInstance.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/springapp/mvc/client/DeviceManagement/ClientObjectDAO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/springapp/mvc/client/ClientController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/springapp/mvc/client/DeviceManagement/ClientAttribute.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/springapp/mvc/client/DeviceManagement/ClientInstanceAttribute.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/springapp/mvc/client/DeviceManagement/ClientResource.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/springapp/mvc/client/Client.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/springapp/mvc/client/ClientController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/springapp/mvc/test/UnitTest.java" />
       </list>
     </option>
@@ -912,12 +928,12 @@
       <option name="number" value="Default" />
       <updated>1447526798667</updated>
       <workItem from="1447526803782" duration="8081000" />
-      <workItem from="1447543337112" duration="24097000" />
+      <workItem from="1447543337112" duration="27357000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32178000" />
+    <option name="totallyTimeSpent" value="35438000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1381" height="747" extended-state="6" />
@@ -937,7 +953,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39872408" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32854864" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1119,7 +1135,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="247" max-vertical-offset="848">
           <caret line="30" column="56" selection-start-line="30" selection-start-column="12" selection-end-line="30" selection-end-column="56" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1162,29 +1178,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/client/Client.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="128" max-vertical-offset="1600">
-          <caret line="20" column="99" selection-start-line="20" selection-start-column="62" selection-end-line="20" selection-end-column="99" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/client/bootstrap/DAO/ClientBootstrapDAO.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="397" max-vertical-offset="848">
           <caret line="54" column="25" selection-start-line="54" selection-start-column="25" selection-end-line="54" selection-end-column="25" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/client/ClientController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="887" max-vertical-offset="1440">
-          <caret line="82" column="35" selection-start-line="82" selection-start-column="23" selection-end-line="82" selection-end-column="35" />
-          <folding>
-            <element signature="e#394#402#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1194,8 +1192,8 @@
           <caret line="33" column="21" selection-start-line="33" selection-start-column="21" selection-end-line="33" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#753#769#0" expanded="true" />
-            <element signature="e#832#849#0" expanded="true" />
+            <element signature="e#769#785#0" expanded="true" />
+            <element signature="e#856#881#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1208,10 +1206,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/client/DeviceManagement/ClientResource.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/client/DeviceManagement/ClientAttribute.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="352">
-          <caret line="12" column="5" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
+          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding>
+            <element signature="e#156#157#0" expanded="true" />
+            <element signature="e#188#189#0" expanded="true" />
+            <element signature="e#238#239#0" expanded="true" />
+            <element signature="e#280#281#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/client/DeviceManagement/ClientInstanceAttribute.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="55" max-vertical-offset="448">
+          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <folding>
+            <element signature="e#350#351#0" expanded="true" />
+            <element signature="e#383#384#0" expanded="true" />
+            <element signature="e#450#451#0" expanded="true" />
+            <element signature="e#494#495#0" expanded="true" />
+            <element signature="e#577#594#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/client/DeviceManagement/ClientResource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="400">
+          <caret line="18" column="1" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
           <folding>
             <element signature="e#154#155#0" expanded="true" />
             <element signature="e#185#186#0" expanded="true" />
@@ -1221,30 +1246,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/test/UnitTest.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/client/Client.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="727" max-vertical-offset="1616">
-          <caret line="63" column="0" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="112" max-vertical-offset="1680">
+          <caret line="26" column="27" selection-start-line="26" selection-start-column="27" selection-end-line="26" selection-end-column="27" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#425#433#0" expanded="true" />
-            <element signature="e#476#484#0" expanded="true" />
-            <element signature="e#527#535#0" expanded="true" />
-            <element signature="e#578#586#0" expanded="true" />
-            <element signature="e#629#637#0" expanded="true" />
-            <element signature="e#680#688#0" expanded="true" />
-            <element signature="e#731#739#0" expanded="true" />
-            <element signature="e#782#790#0" expanded="true" />
-            <element signature="e#2221#2237#0" expanded="true" />
+            <element signature="e#1210#1211#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/client/DeviceManagement/ClientAttribute.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/client/ClientController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7557252" vertical-offset="7" max-vertical-offset="400">
-          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-          <folding />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1575" max-vertical-offset="2064">
+          <caret line="123" column="0" selection-start-line="123" selection-start-column="0" selection-end-line="123" selection-end-column="0" />
+          <folding>
+            <element signature="e#394#402#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/test/UnitTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.913486" vertical-offset="665" max-vertical-offset="1312">
+          <caret line="64" column="8" selection-start-line="64" selection-start-column="8" selection-end-line="64" selection-end-column="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1404#1420#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

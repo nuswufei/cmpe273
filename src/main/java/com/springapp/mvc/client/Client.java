@@ -23,6 +23,11 @@ public class Client implements ClientBootstrapInterface, ClientRegisterInterface
 
     public String temp = null;
     private Bootstrap bootstrap = new Bootstrap();
+
+    public String getId() {
+        return id;
+    }
+
     private final String id;
     private ClientBootstrapDAO clientBootstrapDAO;
     private ObjectMapper jacksonObjectMapper;

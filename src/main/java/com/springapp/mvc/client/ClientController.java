@@ -49,38 +49,77 @@ public class ClientController {
     }
     @RequestMapping(value = "/management/discover/{objectid}", method = RequestMethod.GET)
     @ResponseBody
-    List<ClientAttribute> getAllAttributes(@PathVariable String objectid) {
+    List<ClientInstanceAttribute> getAllAttributes(@PathVariable String objectid) {
         ClientObjectDAO clientObjectDAO = new ClientObjectDAO();
         ClientObject clientObject =clientObjectDAO.get(objectid);
         return clientObject.getAttributes();
     }
     @RequestMapping(value = "/management/discover/{objectid}/{instanceid}", method = RequestMethod.GET)
     @ResponseBody
-    ClientAttribute getInstanceAttribute(@PathVariable String objectid, @PathVariable String instanceid) {
+    ClientInstanceAttribute getInstanceAttribute(@PathVariable String objectid, @PathVariable String instanceid) {
         ClientObjectDAO clientObjectDAO = new ClientObjectDAO();
         ClientObject clientObject = clientObjectDAO.get(objectid);
-        ClientAttribute clientAttribute = clientObject.getAttributes().get(Integer.parseInt(instanceid));
-        return clientAttribute;
+        ClientInstanceAttribute clientInstanceAttribute = clientObject.getAttributes().get(Integer.parseInt(instanceid));
+        return clientInstanceAttribute;
     }
 
     @RequestMapping(value = "/management/discover/{objectid}/{instanceid}/{resourceid}", method = RequestMethod.GET)
     @ResponseBody
-    ClientResource getResourceAttribute(@PathVariable String objectid, @PathVariable String instanceid,
+    ClientAttribute getResourceAttribute(@PathVariable String objectid, @PathVariable String instanceid,
                               @PathVariable String resourceid) {
         ClientObjectDAO clientObjectDAO = new ClientObjectDAO();
         ClientObject clientObject = clientObjectDAO.get(objectid);
-        ClientAttribute clientAttribute = clientObject.getAttributes().get(Integer.parseInt(instanceid));
-        return clientAttribute.getResources().get(Integer.parseInt(resourceid));
+        ClientInstanceAttribute clientInstanceAttribute = clientObject.getAttributes().get(Integer.parseInt(instanceid));
+        return clientInstanceAttribute.getAttributes().get(Integer.parseInt(resourceid));
     }
 
     @RequestMapping(value = "/management/write/{objectid}/{instanceid}/{resourceid}", method = RequestMethod.POST)
     @ResponseBody
-    ClientResource write(@PathVariable String objectid, @PathVariable String instanceid,
+    ClientObject write(@PathVariable String objectid, @PathVariable String instanceid,
                                         @PathVariable String resourceid, @RequestParam("newvalue") String value) {
         ClientObjectDAO clientObjectDAO = new ClientObjectDAO();
         ClientObject clientObject = clientObjectDAO.get(objectid);
         ClientInstance clientInstance = clientObject.getInstances().get(Integer.parseInt(instanceid));
-        clientInstance.getResources().set(Integer.parseInt(resourceid), value);
+        clientInstance.getResources().get(Integer.parseInt(resourceid)).setResource(value);
+        clientObjectDAO.save(clientObject);
+        return clientObjectDAO.get(objectid);
+    }
+
+    @RequestMapping(value = "/management/writeattributes/{objectid}/{instanceid}/{resourceid}", method = RequestMethod.POST)
+    @ResponseBody
+    ClientObject writeattributes(@PathVariable String objectid, @PathVariable String instanceid,
+                       @PathVariable String resourceid, @RequestParam("newvalue") String value) {
+        ClientObjectDAO clientObjectDAO = new ClientObjectDAO();
+        ClientObject clientObject = clientObjectDAO.get(objectid);
+        List<ClientAttribute> attributes
+                = clientObject.getAttributes().get(Integer.parseInt(instanceid)).getAttributes();
+        attributes.get(Integer.parseInt(resourceid)).setAttribute(value);
+        clientObjectDAO.save(clientObject);
+        return clientObjectDAO.get(objectid);
+    }
+
+    @RequestMapping(value = "/management/excute/{objectid}/{instanceid}/{resourceid}", method = RequestMethod.POST)
+    @ResponseBody
+    ClientObject excuteResource(@PathVariable String objectid, @PathVariable String instanceid,
+                                 @PathVariable String resourceid, @RequestParam("newvalue") String value) {
+        ClientObjectDAO clientObjectDAO = new ClientObjectDAO();
+        ClientObject clientObject = clientObjectDAO.get(objectid);
+        ClientInstance clientInstance = clientObject.getInstances().get(Integer.parseInt(instanceid));
+        ClientResource clientResource = clientInstance.getResources().get(Integer.parseInt((resourceid)));
+        clientResource.excute();
+        clientObjectDAO.save(clientObject);
+        return clientObjectDAO.get(objectid);
+    }
+    @RequestMapping(value = "/management/delete/{objectid}", method = RequestMethod.DELETE)
+    void deleteObject(@PathVariable String objectid) {
+        ClientObjectDAO clientObjectDAO = new ClientObjectDAO();
+        clientObjectDAO.delete(objectid);
+        for(int i = 0; i < clientList.size(); ++i) {
+            if(clientList.get(i).getId().equals(objectid)) {
+                clientList.remove(i);
+                break;
+            }
+        }
     }
 
 	@RequestMapping(value = "/hello", method = RequestMethod.GET)

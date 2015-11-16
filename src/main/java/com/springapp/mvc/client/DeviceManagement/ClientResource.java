@@ -11,6 +11,9 @@ public class ClientResource {
     public void setResource(String resource) {
         this.resource = resource;
     }
-
+    public String excute() {
+        resource = null;
+        return "excuted";
+    }
     String resource;
 }

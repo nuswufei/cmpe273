@@ -23,15 +23,15 @@ public class ClientObject {
         this.instances = instances;
     }
 
-    public List<ClientAttribute> getAttributes() {
+    public List<ClientInstanceAttribute> getAttributes() {
         return attributes;
     }
 
-    public void setAttributes(List<ClientAttribute> attributes) {
+    public void setAttributes(List<ClientInstanceAttribute> attributes) {
         this.attributes = attributes;
     }
 
     public String id;
     public List<ClientInstance> instances = new ArrayList<ClientInstance>();
-    public List<ClientAttribute> attributes = new ArrayList<ClientAttribute>();
+    public List<ClientInstanceAttribute> attributes = new ArrayList<ClientInstanceAttribute>();
 }
