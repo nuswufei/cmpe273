@@ -18,7 +18,7 @@ import java.util.List;
 public class ClientController {
     List<Client> clientList = new ArrayList<Client>();
     private boolean notifyBoolean = false;
-
+    ClientObjectDAO clientObjectDAO = new ClientObjectDAO();
     @RequestMapping(value = "/management/create/{id}", method = RequestMethod.POST)
     public void createClient(@PathVariable String id) {
         Client client = new Client(id);
@@ -131,47 +131,42 @@ public class ClientController {
     String observe(@PathVariable String id,
                         @PathVariable String instanceid,
                         @PathVariable String resourceid) {
-        ObserveFlagDAO observeFlagDAO = new ObserveFlagDAO();
-        ObserveFlag observeFlag = new ObserveFlag();
-        observeFlag.setId("1");
-        observeFlag.setFlag("true");
-        observeFlagDAO.save(observeFlag);
+        notifyBoolean = true;
         notify(id, instanceid, resourceid);
         return "hello";
     }
 
     @RequestMapping(value = "/notify/{id}/{instanceid}/{resourceid}", method = RequestMethod.GET)
-    void notify(String id, String instanceid, String resourceid) {
-        if(checkAttribute(id, instanceid, resourceid)) {
+    String notify(String id, String instanceid, String resourceid) {
+        if(checkAttribute(id, instanceid, resourceid) && notifyBoolean) {
             String url = "http://localhost:8080/server/notify";
             try {
                 String json = new ObjectMapper().writeValueAsString(buildNotifyInfo(id, instanceid, resourceid));
                 com.springapp.mvc.server.HttpOperation.post(url, json);
             } catch (JsonProcessingException e) {
                 e.printStackTrace();
+                return "hello";
             }
         }
+        return "hello";
     }
     private NotifyInfo buildNotifyInfo(String id, String instanceid, String resourceid) {
-        ClientObjectDAO clientObjectDAO = new ClientObjectDAO();
+
         ClientObject clientObject = clientObjectDAO.get(id);
         ClientInstance clientInstance = clientObject.getInstances().get(Integer.parseInt(instanceid));
         ClientResource clientResource = clientInstance.getResources().get(Integer.parseInt((resourceid)));
         NotifyInfo notifyInfo = new NotifyInfo();
         notifyInfo.setId((id));
 
-        Calendar cal = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+        Calendar cal = Calendar.getInstance();
         notifyInfo.setTimestamp(sdf.format(cal.getTime()));
         notifyInfo.setTemp(clientResource.getResource());
         return notifyInfo;
     }
     @RequestMapping(value = "/cancelobserve/{id}", method = RequestMethod.GET)
     public void cancelObserve(@PathVariable String id) {
-        ObserveFlagDAO observeFlagDAO = new ObserveFlagDAO();
-        ObserveFlag observeFlag = new ObserveFlag();
-        observeFlag.setId("1");
-        observeFlagDAO.save(observeFlag);
+        notifyBoolean = false;
     }
 
     private boolean checkAttribute(String id, String instanceid, String resourceid) {

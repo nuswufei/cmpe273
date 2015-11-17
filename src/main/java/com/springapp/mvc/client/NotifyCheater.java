@@ -13,10 +13,9 @@ public class NotifyCheater {
         }
     }
     public void observe() throws InterruptedException {
-        ObserveFlagDAO observeFlagDAO = new ObserveFlagDAO();
-        ObserveFlag observeFlag = observeFlagDAO.get("1");
-        while(observeFlag.getFlag() != null) {
+        while(true) {
             HttpOperation.get("http://localhost:8080/client/notify/1/0/7");
+            System.out.println("send request");
             Thread.sleep(5000);
         }
 
