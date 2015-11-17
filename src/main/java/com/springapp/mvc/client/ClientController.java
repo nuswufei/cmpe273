@@ -3,14 +3,15 @@ package com.springapp.mvc.client;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.springapp.mvc.client.DeviceManagement.*;
-import com.springapp.mvc.server.*;
-import com.springapp.mvc.server.HttpOperation;
+import com.springapp.mvc.server.NotifyInfo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 
 @Controller
 @RequestMapping("/client")
@@ -18,7 +19,7 @@ public class ClientController {
     List<Client> clientList = new ArrayList<Client>();
     private boolean notifyBoolean = false;
 
-    @RequestMapping(value = "/management/create/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/management/create/{id}", method = RequestMethod.POST)
     public void createClient(@PathVariable String id) {
         Client client = new Client(id);
         client.factoryInitialBootstrap();
@@ -106,7 +107,7 @@ public class ClientController {
     @RequestMapping(value = "/management/excute/{objectid}/{instanceid}/{resourceid}", method = RequestMethod.POST)
     @ResponseBody
     ClientObject excuteResource(@PathVariable String objectid, @PathVariable String instanceid,
-                                 @PathVariable String resourceid, @RequestParam("newvalue") String value) {
+                                 @PathVariable String resourceid) {
         ClientObjectDAO clientObjectDAO = new ClientObjectDAO();
         ClientObject clientObject = clientObjectDAO.get(objectid);
         ClientInstance clientInstance = clientObject.getInstances().get(Integer.parseInt(instanceid));
@@ -129,25 +130,27 @@ public class ClientController {
     @RequestMapping(value = "/observe/{id}/{instanceid}/{resourceid}", method = RequestMethod.GET)
     String observe(@PathVariable String id,
                         @PathVariable String instanceid,
-                        @PathVariable String resourceid,
-                        ModelMap model) {
-        notifyBoolean = true;
-        while(notifyBoolean) {
-            NotifyInfo notifyInfo = buildNotifyInfo(id, instanceid, resourceid);
-            Calendar cal = Calendar.getInstance();
-            if(cal.getTimeInMillis() / 1000 % 5 == 0) {
-                String url = "http://localhost:8080/server/notify";
-                try {
-                    String json = new ObjectMapper().writeValueAsString(notifyInfo);
-                    com.springapp.mvc.server.HttpOperation.post(url, json);
-                    HttpOperation.get("http://localhost:8080/client/notify/" + id + "/" + instanceid + "/" + resourceid);
-                } catch (JsonProcessingException e) {
-                    e.printStackTrace();
-                }
+                        @PathVariable String resourceid) {
+        ObserveFlagDAO observeFlagDAO = new ObserveFlagDAO();
+        ObserveFlag observeFlag = new ObserveFlag();
+        observeFlag.setId("1");
+        observeFlag.setFlag("true");
+        observeFlagDAO.save(observeFlag);
+        notify(id, instanceid, resourceid);
+        return "hello";
+    }
+
+    @RequestMapping(value = "/notify/{id}/{instanceid}/{resourceid}", method = RequestMethod.GET)
+    void notify(String id, String instanceid, String resourceid) {
+        if(checkAttribute(id, instanceid, resourceid)) {
+            String url = "http://localhost:8080/server/notify";
+            try {
+                String json = new ObjectMapper().writeValueAsString(buildNotifyInfo(id, instanceid, resourceid));
+                com.springapp.mvc.server.HttpOperation.post(url, json);
+            } catch (JsonProcessingException e) {
+                e.printStackTrace();
             }
         }
-        model.put("message", "start observe");
-        return "hello";
     }
     private NotifyInfo buildNotifyInfo(String id, String instanceid, String resourceid) {
         ClientObjectDAO clientObjectDAO = new ClientObjectDAO();
@@ -165,7 +168,10 @@ public class ClientController {
     }
     @RequestMapping(value = "/cancelobserve/{id}", method = RequestMethod.GET)
     public void cancelObserve(@PathVariable String id) {
-        notifyBoolean = false;
+        ObserveFlagDAO observeFlagDAO = new ObserveFlagDAO();
+        ObserveFlag observeFlag = new ObserveFlag();
+        observeFlag.setId("1");
+        observeFlagDAO.save(observeFlag);
     }
 
     private boolean checkAttribute(String id, String instanceid, String resourceid) {

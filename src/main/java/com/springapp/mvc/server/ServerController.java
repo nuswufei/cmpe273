@@ -1,10 +1,10 @@
 package com.springapp.mvc.server;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.springapp.mvc.client.bootstrap.Bootstrap;
 import com.springapp.mvc.server.bootstrap.ServerBootstrapDAO;
 import com.springapp.mvc.server.register.RegisterInfo;
+import com.springapp.mvc.server.register.ServerNotifyinfoDAO;
 import com.springapp.mvc.server.register.ServerRegisterInfoDAO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -77,16 +77,23 @@ public class ServerController {
     @RequestMapping(value = "/notify", method = RequestMethod.POST)
     public void notifyListener(@RequestBody NotifyInfo notifyInfo) {
         try {
-            temperature = new ObjectMapper().writeValueAsString(notifyInfo);
-        } catch (JsonProcessingException e) {
+            ServerNotifyinfoDAO serverNotifyinfoDAO = new ServerNotifyinfoDAO();
+            serverNotifyinfoDAO.save(notifyInfo);
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     //for testing only
-    @RequestMapping(value = "/gettemperature", method = RequestMethod.GET)
-    public String getTemp(ModelMap model) {
-        model.put("message", temperature);
+    @RequestMapping(value = "/gettemperature/{id}", method = RequestMethod.GET)
+    public String getTemp(ModelMap model, @PathVariable String id) {
+        ServerNotifyinfoDAO serverNotifyinfoDAO = new ServerNotifyinfoDAO();
+        NotifyInfo notifyInfo = serverNotifyinfoDAO.getNotifyinfo(id);
+        try {
+            model.put("message", new ObjectMapper().writeValueAsString(notifyInfo));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return "hello";
     }
 }
