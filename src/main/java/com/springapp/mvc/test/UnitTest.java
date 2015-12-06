@@ -29,8 +29,6 @@ public class UnitTest {
         c4.setResource("manufacture: HONDA");
         ClientResource c5 = new ClientResource();
         c5.setResource("modelname: civic");
-        ClientResource c6 = new ClientResource();
-        c6.setResource("modeloption: ex");
         ClientResource c7 = new ClientResource();
         c7.setResource("temperature: 20");
         ClientInstance clientInstance = new ClientInstance();

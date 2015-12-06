@@ -21,7 +21,8 @@ public class ServerBootstrapDAO {
     public ServerBootstrapDAO() {
         jacksonObjectMapper = new ObjectMapper();
         jacksonObjectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        MongoClientURI connectionString = new MongoClientURI("mongodb://273lab:1234@ds053774.mongolab.com:53774/cmpe273");
+        MongoClientURI connectionString =
+                new MongoClientURI("mongodb://273lab:1234@ds053774.mongolab.com:53774/cmpe273");
         MongoClient mongoClient = new MongoClient(connectionString);
         MongoDatabase database = mongoClient.getDatabase("cmpe273");
         mongoCollection = database.getCollection("bootstrap");
