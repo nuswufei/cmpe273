@@ -36,14 +36,12 @@ public class Client implements ClientBootstrapInterface, ClientRegisterInterface
 
     private ClientObject clientObject;
 
-    public Client(String id) {
-        this.id = id;
+    public Client(RegisterInfo registerInfo) {
+        this.id = registerInfo.getId();
         clientBootstrapDAO = new ClientBootstrapDAO();
         jacksonObjectMapper = new ObjectMapper();
         jacksonObjectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        registerInfo = new RegisterInfo();
-        registerInfo.setId(id);
-        registerInfo.setClientURI(CLIENT_URL);
+        this.registerInfo = registerInfo;
         clientObject = new ClientObject();
         clientObject.setId(id);
     }
@@ -63,8 +61,6 @@ public class Client implements ClientBootstrapInterface, ClientRegisterInterface
     public void factoryInitialBootstrap() {
         bootstrap.setId(id);
         bootstrap.setServerURL(DEFAULT_REGISTERSERVER_URL);
-        bootstrap.setManufacture("honda");
-        bootstrap.setModel("civic");
         clientBootstrapDAO.saveBootstrap(bootstrap);
     }
 

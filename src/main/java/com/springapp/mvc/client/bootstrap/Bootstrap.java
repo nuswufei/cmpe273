@@ -5,16 +5,14 @@ package com.springapp.mvc.client.bootstrap;
  */
 public class Bootstrap {
     String id;
-    String manufacture;
     String serverURL;
-    String model;
 
-    public String getModel() {
-        return model;
+    public String getServerURL() {
+        return serverURL;
     }
 
-    public void setModel(String model) {
-        this.model = model;
+    public void setServerURL(String serverURL) {
+        this.serverURL = serverURL;
     }
 
     public String getId() {
@@ -25,20 +23,5 @@ public class Bootstrap {
         this.id = id;
     }
 
-    public String getManufacture() {
-        return manufacture;
-    }
-
-    public void setManufacture(String manufacture) {
-        this.manufacture = manufacture;
-    }
-
-    public String getServerURL() {
-        return serverURL;
-    }
-
-    public void setServerURL(String serverURL) {
-        this.serverURL = serverURL;
-    }
 
 }

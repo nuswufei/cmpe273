@@ -22,7 +22,7 @@ public class ClientObjectDAO {
         jacksonObjectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
         MongoDatabase db = mongoClient.getDatabase("managementdb");
-        mongoCollection = db.getCollection("testColl");
+        mongoCollection = db.getCollection("ra");
     }
     public void save(ClientObject clientObject) {
         delete(clientObject.getId());

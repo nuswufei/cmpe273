@@ -23,7 +23,7 @@ public class ClientBootstrapDAO {
         jacksonObjectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
         MongoDatabase db = mongoClient.getDatabase("bootstrapdb");
-        mongoCollection = db.getCollection("testColl");
+        mongoCollection = db.getCollection("bootstrapCol");
     }
 
     public void saveBootstrap(Bootstrap bootstrap) {

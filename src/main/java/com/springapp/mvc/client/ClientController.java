@@ -9,14 +9,12 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
+import java.util.*;
 
 @Controller
 @RequestMapping("/client")
 public class ClientController {
-    List<Client> clientList = new ArrayList<Client>();
+    Map<String, Client> clientList = new HashMap<String, Client>();
     private boolean notifyBoolean = false;
     ClientObjectDAO clientObjectDAO = new ClientObjectDAO();
     @RequestMapping(value = "/management/create/{id}", method = RequestMethod.POST)
@@ -26,7 +24,6 @@ public class ClientController {
         client.register();
         client.saveClientObject();
         clientList.add(client);
-
     }
     @RequestMapping(value = "/management/read/{objectid}", method = RequestMethod.GET)
     @ResponseBody

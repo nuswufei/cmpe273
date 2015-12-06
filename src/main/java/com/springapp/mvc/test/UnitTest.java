@@ -40,7 +40,6 @@ public class UnitTest {
         lst.add(c3);
         lst.add(c4);
         lst.add(c5);
-        lst.add(c6);
         lst.add(c7);
         clientInstance.setResources(lst);
 
