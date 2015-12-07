@@ -29,7 +29,10 @@ public class ClientObject {
 
     String id;
     Map<String , Sensor> sensors = new HashMap<String, Sensor>();
-    ClientObject(String id) {
+    public ClientObject() {
+
+    }
+    public ClientObject(String id) {
         this.id = id;
         Sensor mileage = new Sensor("100", "gt=0");
         Sensor oil = new Sensor("2.5", "gt=0; lt=10");

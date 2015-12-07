@@ -1,45 +1,21 @@
 package com.springapp.mvc.client.InformationReporting;
 
+import com.springapp.mvc.client.DeviceManagement.ClientObject;
+
 /**
  * Created by WU on 16/11/2015.
  */
 public class NotifyInfo {
     String id;
     double timestamp;
-    String temp;
+    ClientObject data;
 
-    public double getTimestamp() {
-        return timestamp;
+    public ClientObject getData() {
+        return data;
     }
 
-    public void setTimestamp(double timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getGps() {
-        return gps;
-    }
-
-    public void setGps(String gps) {
-        this.gps = gps;
-    }
-
-    public String getOilTank() {
-        return oilTank;
-    }
-
-    public void setOilTank(String oilTank) {
-        this.oilTank = oilTank;
-    }
-
-    String gps;
-    String oilTank;
-    public String getTemp() {
-        return temp;
-    }
-
-    public void setTemp(String temp) {
-        this.temp = temp;
+    public void setData(ClientObject data) {
+        this.data = data;
     }
 
     public String getId() {
@@ -48,6 +24,14 @@ public class NotifyInfo {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public double getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(double timestamp) {
+        this.timestamp = timestamp;
     }
 
 }

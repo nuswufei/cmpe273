@@ -26,9 +26,9 @@ public class ServerRegisterInfoDAO {
         MongoDatabase database = mongoClient.getDatabase("cmpe273");
         mongoCollection = database.getCollection("register");
     }
-    public void save(RegisterInfo registerInfo) {
+    public void saveRegisterInfo(RegisterInfo registerInfo) {
         try {
-            delete(registerInfo.getId());
+            deleteRegisterInfo(registerInfo.getId());
             String jsonInString = jacksonObjectMapper.writeValueAsString(registerInfo);
             Document doc = Document.parse(jsonInString);
             mongoCollection.insertOne(doc);
@@ -36,7 +36,7 @@ public class ServerRegisterInfoDAO {
             e.printStackTrace();
         }
     }
-    public void delete(String id) {
+    public void deleteRegisterInfo(String id) {
         Document document = new Document();
         document.append("id", id);
         mongoCollection.deleteMany(document);

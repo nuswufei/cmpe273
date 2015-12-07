@@ -10,6 +10,9 @@ public class Sensor {
         this.resource = resource;
         this.attribute = attribute;
     }
+    Sensor() {
+
+    }
     public String getResource() {
         return resource;
     }

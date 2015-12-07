@@ -1,11 +1,10 @@
 package com.springapp.mvc.server;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.springapp.mvc.client.bootstrap.Bootstrap;
-import com.springapp.mvc.server.bootstrap.ServerBootstrapDAO;
 import com.springapp.mvc.server.register.RegisterInfo;
 import com.springapp.mvc.server.register.ServerNotifyinfoDAO;
 import com.springapp.mvc.server.register.ServerRegisterInfoDAO;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -16,36 +15,21 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping("/server")
 public class ServerController {
-    private String temperature = "NAN";
+    ServerDAO serverDAO = new ServerDAO();
     @RequestMapping(value = "/hello", method = RequestMethod.GET)
     public String printWelcome(ModelMap model) {
         model.addAttribute("message", "Hello Server!");
-
         return "hello";
-    }
-    @RequestMapping(value = "/bootstrap/{id}", method = RequestMethod.GET)
-    public @ResponseBody Bootstrap getBootstrap(@PathVariable String id) {
-        ServerBootstrapDAO serverBootstrapDAO = new ServerBootstrapDAO();
-        return serverBootstrapDAO.getBootstrap(id);
     }
     @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @ResponseStatus(value = HttpStatus.OK)
     public void clientRegister(@RequestBody RegisterInfo registerInfo) {
-        ServerRegisterInfoDAO serverRegisterInfoDAO = new ServerRegisterInfoDAO();
-        serverRegisterInfoDAO.save(registerInfo);
+        serverDAO.saveRegisterInfo(registerInfo);
     }
-    @RequestMapping(value = "/register/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/deregister/{id}", method = RequestMethod.DELETE)
+    @ResponseStatus(value = HttpStatus.OK)
     public void clientDeregister(@PathVariable String id) {
-        ServerRegisterInfoDAO serverRegisterInfoDAO = new ServerRegisterInfoDAO();
-        serverRegisterInfoDAO.delete(id);
-    }
-
-    //this method for testing only
-    @RequestMapping(value = "/register/{id}", method = RequestMethod.GET)
-    public String getRegisterInfo(@PathVariable String id, ModelMap model) {
-        ServerRegisterInfoDAO serverRegisterInfoDAO = new ServerRegisterInfoDAO();
-        RegisterInfo registerInfo = serverRegisterInfoDAO.getRegisterInfo(id);
-        model.addAttribute("message", registerInfo == null ? "null" : registerInfo.getId());
-        return "hello";
+        serverDAO.deleteRegisterInfo(id);
     }
 
     @RequestMapping(value = "/observe/{id}/{instanceid}/{resourceid}", method = RequestMethod.GET)
