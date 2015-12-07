@@ -32,52 +32,10 @@ public class ServerController {
         serverDAO.deleteRegisterInfo(id);
     }
 
-    @RequestMapping(value = "/observe/{id}/{instanceid}/{resourceid}", method = RequestMethod.GET)
-    public void observe(@PathVariable String id,
-                          @PathVariable String instanceid,
-                          @PathVariable String resourceid) {
-        ServerRegisterInfoDAO serverRegisterInfoDAO = new ServerRegisterInfoDAO();
-        RegisterInfo registerInfo = serverRegisterInfoDAO.getRegisterInfo(id);
-        try {
-            String url = registerInfo.getClientURI();
-            HttpOperation.get(url + "observe/" + id + "/" + instanceid + "/" + resourceid);
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @RequestMapping(value = "/cancelobserve/{id}", method = RequestMethod.GET)
-    public void cancelObserve(@PathVariable String id) {
-        ServerRegisterInfoDAO serverRegisterInfoDAO = new ServerRegisterInfoDAO();
-        RegisterInfo registerInfo = serverRegisterInfoDAO.getRegisterInfo(id);
-        try {
-            String url = registerInfo.getClientURI();
-            HttpOperation.get(url + "cancelobserve/" + id);
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     @RequestMapping(value = "/notify", method = RequestMethod.POST)
-    public void notifyListener(@RequestBody NotifyInfo notifyInfo) {
-        try {
-            ServerNotifyinfoDAO serverNotifyinfoDAO = new ServerNotifyinfoDAO();
-            serverNotifyinfoDAO.save(notifyInfo);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    @ResponseStatus(value = HttpStatus.OK)
+    public synchronized void notifyListener(@RequestBody NotifyInfo notifyInfo) {
+        serverDAO.saveNotifyInfo(notifyInfo);
     }
 
-    //for testing only
-    @RequestMapping(value = "/gettemperature/{id}", method = RequestMethod.GET)
-    public String getTemp(ModelMap model, @PathVariable String id) {
-        ServerNotifyinfoDAO serverNotifyinfoDAO = new ServerNotifyinfoDAO();
-        NotifyInfo notifyInfo = serverNotifyinfoDAO.getNotifyinfo(id);
-        try {
-            model.put("message", new ObjectMapper().writeValueAsString(notifyInfo));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "hello";
-    }
 }

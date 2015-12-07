@@ -18,7 +18,7 @@ import java.io.IOException;
 public class HttpOperation {
     static HttpClient httpClient = HttpClientBuilder.create().build();
     static ObjectMapper jacksonObjectMapper= new ObjectMapper();
-    public static void post(String url, Object object) {
+    public synchronized static void post(String url, Object object) {
         try {
             String jsonString = jacksonObjectMapper.writeValueAsString(object);
             HttpPost request = new HttpPost(url);

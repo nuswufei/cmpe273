@@ -54,4 +54,17 @@ public class ServerDAO {
         }
         return null;
     }
+    public void saveNotifyInfo(NotifyInfo notifyInfo) {
+        try {
+            mongoCollection = database.getCollection("notifyInfoCol");
+            String jsonInString = jacksonObjectMapper.writeValueAsString(notifyInfo);
+            Document doc = Document.parse(jsonInString);
+            mongoCollection.insertOne(doc);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
 }

@@ -11,12 +11,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import java.util.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 @Controller
 @RequestMapping("/client")
 public class ClientController {
     Map<String, Client> clientMap = new HashMap<String, Client>();
-    ClientDAO clientDAO = new ClientDAO();
+    final ClientDAO clientDAO = new ClientDAO();
+    ExecutorService executor = Executors.newFixedThreadPool(4);
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
@@ -80,9 +83,26 @@ public class ClientController {
         clientDAO.saveClientObject(clientObject);
     }
 
+    @RequestMapping(value = "/{id}/observe", method = RequestMethod.POST)
+    @ResponseStatus(value = HttpStatus.OK)
+    public void startObserve(@PathVariable String id) {
+        Client client = clientMap.get(id);
+        client.setObserved(true);
+        executor.execute(new ObserveThread(client, clientDAO));
+    }
+
+    @RequestMapping(value = "/{id}/stopobserve", method = RequestMethod.POST)
+    @ResponseStatus(value = HttpStatus.OK)
+    public void stopObserve(@PathVariable String id) {
+        Client client = clientMap.get(id);
+        client.setObserved(false);
+    }
+
     @RequestMapping(value = "/hello", method = RequestMethod.GET)
     public String printWelcome(ModelMap model) {
         model.addAttribute("message", "Hello Client!");
         return "hello";
     }
+
+
 }

@@ -1,7 +1,5 @@
 package com.springapp.mvc.server;
 
-import com.springapp.mvc.client.DeviceManagement.ClientObject;
-
 /**
  * Created by WU on 16/11/2015.
  */
@@ -33,7 +31,5 @@ public class NotifyInfo {
     public void setTimestamp(double timestamp) {
         this.timestamp = timestamp;
     }
-
-
 
 }

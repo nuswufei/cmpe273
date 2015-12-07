@@ -47,4 +47,13 @@ public class Client {
         bootstrap.setServerURL(DEFAULT_REGISTERSERVER_URL);
         this.bootstrapStatus = true;
     }
+
+    boolean isObserved = false;
+    public synchronized boolean isObserved() {
+        return isObserved;
+    }
+
+    public synchronized void setObserved(boolean observed) {
+        isObserved = observed;
+    }
 }
