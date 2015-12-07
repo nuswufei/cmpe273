@@ -22,7 +22,8 @@ public class HttpOperation {
             StringEntity params =new StringEntity(jsonString, ContentType.create("application/json"));
             request.addHeader("Content-Type", "application/json");
             request.setEntity(params);
-            httpClient.execute(request);
+            HttpResponse httpResponse = httpClient.execute(request);
+            httpResponse.getStatusLine();
         }catch (Exception e) {
             System.out.println(e.getMessage());
         }
