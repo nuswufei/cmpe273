@@ -1,5 +1,6 @@
 # idea files
 .idea/
 target/
+/target/*
 Assignment2.iml
 diagram.png
