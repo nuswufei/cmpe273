@@ -7,11 +7,11 @@ var ClientListData = [];
 
 // DOM Ready =============================================================
 $(document).ready(function() {
-
+    console.log("Enter jquery");
     // Populate the user table on initial page load
     populateTable();
     var CL = $('#ClientList');
-    CL.find('table').find('tbody').on('click', 'td a.LinkShowClient', showClassInfo);
+    CL.find('table').find('tbody').on('click', 'td a.LinkShowClient', showClientInfo);
     CL.find('table').find('tbody').on('click', 'td a.LinkStartObserve', startobserve);
     CL.find('table').find('tbody').on('click', 'td a.LinkEndObserve', endobserve);
 });
@@ -30,10 +30,10 @@ function populateTable() {
         // For each item in our JSON, add a table row and cells to the content string
         $.each(data, function(){
             tableContent += '<tr>';
-            tableContent += '<td><a href="#" class="LinkShowClient" rel="' + this.ID + '">' + this.ID+'</a></td>';
+            tableContent += '<td><a href="#" class="LinkShowClient" rel="' + this.clientid + '">' + this.clientid+'</a></td>';
             tableContent += '<td>' + this.ObserveState + '</td>';
-            tableContent += '<td><a href="#" class="LinkStartFeature" rel="' + this.ID + '">On</a></td>';
-            tableContent += '<td><a href="#" class="LinkEndObserve" rel="' + this.ID + '">Off</a></td>';
+            tableContent += '<td><a href="#" class="LinkStartFeature" rel="' + this.clientid + '">On</a></td>';
+            tableContent += '<td><a href="#" class="LinkEndObserve" rel="' + this.clientid + '">Off</a></td>';
             tableContent += '</tr>';
         });
 
@@ -42,19 +42,19 @@ function populateTable() {
     });
 }
 
-function showClassInfo(event){
+function showClientInfo(event){
     event.preventDefault();
 
     var thisClientId = $(this).attr('rel');
 
-    var arrayPosition = ClientListData.map(function(arrayItem){return arrayItem.ID;}).indexOf(thisClientId);
+    var arrayPosition = ClientListData.map(function(arrayItem){return arrayItem.clientid;}).indexOf(thisClientId);
 
     var thisClientObject = ClientListData[arrayPosition];
 
     //Populate Info Box
     $('#ClientInfoManufacture').text(thisClientObject.manufacture);
     $('#ClientInfoModel').text(thisClientObject.model);
-    $('#ClientInfoVIN').text(thisClientObject.VIN);
+    $('#ClientInfoVIN').text(thisClientObject.vin);
     $('#ClientInfoYear').text(thisClientObject.year);
     $('#ClientInfoOwner').text(thisClientObject.owner);
 }
