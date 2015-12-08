@@ -1,4 +1,5 @@
 package com.springapp.mvc.server;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpDelete;
@@ -16,10 +17,12 @@ import java.io.IOException;
  */
 public class HttpOperation {
     static HttpClient httpClient = HttpClientBuilder.create().build();
-    public static void post(String url, String jsonString) {
+    static ObjectMapper jacksonObjectMapper= new ObjectMapper();
+    public static void post(String url, Object object) {
         try {
+
             HttpPost request = new HttpPost(url);
-            StringEntity params =new StringEntity(jsonString, ContentType.create("application/json"));
+            StringEntity params =new StringEntity(jacksonObjectMapper.writeValueAsString(object), ContentType.create("application/json"));
             request.addHeader("Content-Type", "application/json");
             request.setEntity(params);
             httpClient.execute(request);

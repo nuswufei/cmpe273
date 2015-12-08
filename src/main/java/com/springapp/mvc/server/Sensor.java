@@ -1,4 +1,4 @@
-package com.springapp.mvc.client.DeviceManagement;
+package com.springapp.mvc.server;
 
 /**
  * Created by WU on 6/12/2015.

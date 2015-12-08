@@ -9,7 +9,7 @@ import com.springapp.mvc.client.register.RegisterInfo;
  * Created by WU on 14/11/2015.
  */
 public class Client {
-    final static private String DEFAULT_REGISTERSERVER_URL = "http://localhost:8080/server/register";
+    final static private String DEFAULT_REGISTERSERVER_URL = "http://localhost:8080/server";
 
     boolean registerStatus = false;
     boolean bootstrapStatus = false;
@@ -26,20 +26,34 @@ public class Client {
 
     private final String id;
 
-    private RegisterInfo registerInfo;
+    public RegisterInfo getRegisterInfo() {
+        return registerInfo;
+    }
 
-    private ClientObject clientObject;
+    public void setRegisterInfo(RegisterInfo registerInfo) {
+        this.registerInfo = registerInfo;
+    }
+
+
+    private RegisterInfo registerInfo;
 
     public Client(RegisterInfo registerInfo) {
         this.id = registerInfo.getId();
         this.registerInfo = registerInfo;
-        clientObject = new ClientObject(this.id);
-        clientObject.setId(id);
     }
 
     public void factoryInitialBootstrap() {
         bootstrap.setId(id);
         bootstrap.setServerURL(DEFAULT_REGISTERSERVER_URL);
         this.bootstrapStatus = true;
+    }
+
+    boolean isObserved = false;
+    public synchronized boolean isObserved() {
+        return isObserved;
+    }
+
+    public synchronized void setObserved(boolean observed) {
+        isObserved = observed;
     }
 }

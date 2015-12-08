@@ -1,10 +1,10 @@
-package com.springapp.mvc.client.DeviceManagement;
+package com.springapp.mvc.server;
 
 
 
-import java.util.ArrayList;
+import com.springapp.mvc.server.Sensor;
+
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**

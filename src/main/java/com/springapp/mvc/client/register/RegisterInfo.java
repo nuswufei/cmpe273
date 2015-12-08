@@ -12,7 +12,7 @@ public class RegisterInfo {
     String model;
     String year;
     String owner;
-    RegisterInfo(String id, String vin, String manufactory, String model, String year, String owner) {
+    public RegisterInfo(String id, String vin, String manufactory, String model, String year, String owner) {
         this.id = id;
         this.vin = vin;
         this.manufactory = manufactory;
@@ -20,6 +20,9 @@ public class RegisterInfo {
         this.year = year;
         this.owner = owner;
         this.clientURI = "http://localhost:8080/client/" + id;
+    }
+    public RegisterInfo() {
+
     }
     public String getOwner() {
         return owner;

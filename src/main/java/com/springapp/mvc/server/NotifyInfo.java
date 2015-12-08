@@ -5,23 +5,15 @@ package com.springapp.mvc.server;
  */
 public class NotifyInfo {
     String id;
+    double timestamp;
+    ClientObject data;
 
-    public String getTimestamp() {
-        return timestamp;
+    public ClientObject getData() {
+        return data;
     }
 
-    public void setTimestamp(String timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    String timestamp;
-    String temp;
-    public String getTemp() {
-        return temp;
-    }
-
-    public void setTemp(String temp) {
-        this.temp = temp;
+    public void setData(ClientObject data) {
+        this.data = data;
     }
 
     public String getId() {
@@ -30,6 +22,14 @@ public class NotifyInfo {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public double getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(double timestamp) {
+        this.timestamp = timestamp;
     }
 
 }
